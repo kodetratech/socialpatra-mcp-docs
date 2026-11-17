@@ -1,0 +1,16 @@
+Documentation licence
+
+The documentation in this repository (the Markdown files and server.json) is
+licensed under the Creative Commons Attribution 4.0 International licence
+(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/legalcode
+
+You may share and adapt the documentation for any purpose, including
+commercially, if you give appropriate credit, link to the licence and indicate
+if changes were made.
+
+The SocialPatra name and logo are trademarks of their owner and are not
+licensed by this notice.
+
+The SocialPatra MCP server software and the SocialPatra service are proprietary.
+This repository does not contain the server source code and grants no licence
+to it.
