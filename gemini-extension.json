@@ -1,0 +1,11 @@
+{
+  "name": "socialpatra",
+  "version": "1.0.0",
+  "description": "Schedule, publish and report on social media posts across 18 platforms from Gemini CLI.",
+  "mcpServers": {
+    "socialpatra": {
+      "httpUrl": "https://mcp.socialpatra.com/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}

@@ -151,6 +151,18 @@ Use the support page: https://socialpatra.com/support
 - Whether a chat app can send an attached file inline varies by client. The upload link tool works in any client.
 - Results depend on the assistant. Check a post before you ask it to publish.
 
+## Directory listings
+
+Status as of 2026-11-26: SocialPatra is **not yet submitted to, listed in or approved by any assistant directory**. Nothing here is endorsed by OpenAI, Anthropic or Google. Connect it with the custom-server steps above.
+
+| Directory | Status | What this repository holds |
+|---|---|---|
+| ChatGPT plugin directory | Not submitted. Needs owner steps first. | `openai-plugin/` (the package source) and `scripts/build-openai-plugin.sh` (builds the ZIP). Its review test cases are drafts that have not been run in ChatGPT. |
+| Gemini CLI extensions gallery | Not listed. The gallery indexes public GitHub repositories that carry the `gemini-cli-extension` topic, and this repository does not carry it yet. | `gemini-extension.json` and `GEMINI.md` at the repository root. Not yet installed with `gemini extensions install`. |
+| Claude connectors directory | Not submitted. | Nothing in this repository; it uses the server URL above. |
+
+Build the ChatGPT package with `sh scripts/build-openai-plugin.sh`; it writes `dist/socialpatra-openai-plugin.zip`.
+
 ## More
 
 - [Tools reference](docs/tools.md)
