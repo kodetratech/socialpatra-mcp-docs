@@ -1,0 +1,90 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "socialpatra",
+  "version": "1.0.0",
+  "description": "Schedule, publish and report on social media posts from your assistant.",
+  "author": {
+    "name": "Kodetra Technologies",
+    "url": "https://socialpatra.com"
+  },
+  "homepage": "https://socialpatra.com",
+  "repository": "https://github.com/kodetratech/socialpatra-mcp-docs",
+  "keywords": ["social media", "scheduling", "publishing", "analytics"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "SocialPatra",
+        "shortDescription": "Schedule social media posts",
+        "longDescription": "SocialPatra connects your assistant to your own SocialPatra workspace so you can manage social media posts by chat. Ask it to list the social accounts connected to your workspace, check whether any need to be reconnected, write a post and publish it now or schedule it for later on the accounts you choose, import or upload an image or video to attach to a post, list your drafts, see which posts performed best, check the live status of a post on each platform, summarize your analytics for a date range, and save or search reusable content in your content library.\n\nWho it is for: people and teams who already use SocialPatra to publish to their own social accounts.\n\nHow it works: you sign in to SocialPatra in your browser, choose one workspace and approve a list of permissions on a consent page. The assistant can only do what you approved, in that one workspace, and you can revoke it at any time in SocialPatra under Settings, Security, Connected AI apps. SocialPatra adds its own scheduling, approval and analytics on top of the platforms; the plugin only reaches accounts that are already connected in your workspace.\n\nLimitations: connecting or disconnecting a social account, editing or deleting a published post, and changing plan, billing or workspace settings are not available through the assistant and stay in the SocialPatra web app. TikTok is not supported. Posts may need approval first, depending on your workspace settings, and daily posting limits of each connected account apply. Available on workspaces whose plan includes AI app connections. Check a post before you ask the assistant to publish it.",
+        "developerName": "Kodetra Technologies",
+        "category": "Productivity",
+        "websiteURL": "https://socialpatra.com",
+        "supportURL": "https://socialpatra.com/support",
+        "privacyPolicyURL": "https://socialpatra.com/privacy-policy",
+        "termsOfServiceURL": "https://socialpatra.com/terms",
+        "defaultPrompt": [
+          "Show my connected social accounts",
+          "Schedule a LinkedIn post for tomorrow 9am about our launch",
+          "Audit last month's social performance"
+        ],
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Confirm the connection and the permissions granted",
+              "prompt": "Use SocialPatra: which workspace am I connected to, and what are you allowed to do in it?",
+              "tools_triggered": "whoami",
+              "expected_behavior": "Calls whoami once and reports the connected workspace and the permissions (scopes) the user approved on the consent page. It does not claim any permission that was not granted."
+            },
+            {
+              "description": "List the connected social accounts",
+              "prompt": "Show my connected social accounts.",
+              "tools_triggered": "list_connections",
+              "expected_behavior": "Calls list_connections and lists each connected account with its platform, name and status. It does not offer to connect a new account."
+            },
+            {
+              "description": "Summarize analytics for a date range",
+              "prompt": "Summarize my social media analytics for the last 30 days: total posts, engagement and which platform did best.",
+              "tools_triggered": "get_analytics_dashboard",
+              "expected_behavior": "Calls get_analytics_dashboard for the last 30 days and summarizes the returned totals, engagement and per-platform distribution. If the test workspace has no activity it says so instead of inventing numbers."
+            },
+            {
+              "description": "Save an item to the content library and find it again",
+              "prompt": "Save this to my content library with the title 'Review test caption' and the tag 'review-test': 'Three ways to batch a week of social posts in one hour.' Then search the library for 'review-test' and show me what you find.",
+              "tools_triggered": "save_to_content_library, search_content_library",
+              "expected_behavior": "Calls save_to_content_library with the given title, text and tag, then search_content_library, and shows the saved item in the results."
+            },
+            {
+              "description": "Schedule a text post on a connected account",
+              "prompt": "Schedule a text post that says 'Review test post, please ignore' on my first connected account for next Tuesday at 9:00 AM UTC.",
+              "tools_triggered": "list_connections, create_post",
+              "expected_behavior": "Calls list_connections to get the target account, then create_post with postType text and a schedule for the requested time (it does not publish immediately). It reports the post as scheduled, or as waiting for approval if the workspace requires approval."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Deleting a published post is not available through the assistant",
+              "prompt": "Delete my most recent published post from all my accounts."
+            },
+            {
+              "description": "Connecting a new social account is not available through the assistant",
+              "prompt": "Connect my new Instagram account to SocialPatra."
+            },
+            {
+              "description": "Changing plan or billing is not available through the assistant",
+              "prompt": "Upgrade my SocialPatra workspace to the most expensive plan."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin does not sell products or process payments."
+      },
+      "publication": {
+        "release_notes": "Initial release: list connected accounts, create and schedule posts, import and upload media, drafts, post status, analytics and the content library."
+      }
+    }
+  }
+}
